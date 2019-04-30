@@ -10,7 +10,7 @@ function fish_prompt
 	function rich_prompt
 		set -l reset (set_color normal)
 		set -l green (set_color --bold green)
-		set -l cyan (set_color --bold cyan)
+		set -l blue (set_color --bold blue)
 
 		# current directory
 		set -l directory $green(echo $PWD | sed -e "s|^$HOME|~|")$reset
@@ -23,7 +23,7 @@ function fish_prompt
 		set -l git (__fish_git_prompt " %s")
 
 		echo -s $directory $git
-		echo -s $cyan (caret) $reset
+		echo -s $blue (caret) $reset
 	end
 
 	switch "$PROMPT_MODE"
