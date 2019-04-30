@@ -15,6 +15,6 @@ function fish_right_prompt -d "Write out the right prompt"
 		case 0 # Simple
 		case 1 # Nothing
 		case '*' # Rich (default)
-			rich_prompt $last_status
+			rich_right_prompt $last_status
 	end
 end
