@@ -4,7 +4,7 @@ function fish_right_prompt -d "Write out the right prompt"
 	function rich_prompt -a last_status
 		if test $last_status -ne 0
 			set_color --bold red
-			echo -ns $last_status'🚫 '
+			echo -ns $last_status '✗'
 			set_color normal
 		end
 
