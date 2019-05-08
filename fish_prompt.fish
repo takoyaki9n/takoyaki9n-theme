@@ -1,5 +1,5 @@
 function fish_prompt
-    function caret
+    function __print_caret
         if test $USER = "root"
             echo '# '
         else
@@ -7,7 +7,7 @@ function fish_prompt
         end
     end
 
-    function rich_prompt
+    function __fish_rich_prompt
         set -l reset (set_color normal)
         set -l green (set_color --bold green)
         set -l blue (set_color --bold blue)
@@ -18,19 +18,22 @@ function fish_prompt
         # git information
         set -g __fish_git_prompt_show_informative_status
         set -g __fish_git_prompt_showcolorhints
+        __fish_git_prompt_set_char __fish_git_prompt_char_dirtystate '+'
+        __fish_git_prompt_set_char __fish_git_prompt_char_invalidstate !
+        __fish_git_prompt_set_char __fish_git_prompt_char_stagedstate '@'
         set -g __fish_git_prompt_color_branch "yellow"
         set -g __fish_git_prompt_char_stateseparator ' '
         set -l git (__fish_git_prompt " %s")
 
         echo -s $directory $git
-        echo -s $blue (caret) $reset
+        echo -s $blue (__print_caret) $reset
     end
 
     switch "$PROMPT_MODE"
-        case 0 # Simple
-            caret
-        case 1 # Nothing
+        case 1 # Simple
+            __print_caret
+        case 2 # Nothing
         case '*' # Rich (default)
-            rich_prompt
+            __fish_rich_prompt
     end
 end
