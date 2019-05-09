@@ -1,7 +1,9 @@
-function switch_prompt -a mode
-    set -g PROMPT_MODE $mode
-    if test -z "$PROMPT_MODE" -o "$PROMPT_MODE" -eq 0
-        set -g PROMPT_MODE 'default'
+function switch_prompt -a mode -d "switch prompt"
+    set -l modes 'Rich' 'Simple' 'Nothing'
+    if contains $mode $modes
+        set -g PROMPT_MODE $mode
+    else
+        set -g PROMPT_MODE 'Rich'
     end
     echo "Prompt switched to $PROMPT_MODE."
 end

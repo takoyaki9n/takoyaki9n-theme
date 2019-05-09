@@ -30,9 +30,9 @@ function fish_prompt
     end
 
     switch "$PROMPT_MODE"
-        case 1   # Simple
+        case 'Simple'
             __print_caret
-        case 2   # Nothing
+        case 'Nothing'
         case '*' # Rich (default)
             __fish_rich_prompt
     end

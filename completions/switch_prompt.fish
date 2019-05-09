@@ -1,0 +1,1 @@
+complete -c switch_prompt -x -k -a 'Rich Simple Nothing'

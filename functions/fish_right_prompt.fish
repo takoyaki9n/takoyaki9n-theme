@@ -15,8 +15,8 @@ function fish_right_prompt -d "Write out the right prompt"
     end
 
     switch "$PROMPT_MODE"
-        case 1   # Simple
-        case 2   # Nothing
+        case 'Simple'
+        case 'Nothing'
         case '*' # Rich (default)
             __fish_rich_right_prompt "$cmd_status"
     end
