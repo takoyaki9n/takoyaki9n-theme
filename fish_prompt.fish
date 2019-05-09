@@ -18,9 +18,9 @@ function fish_prompt
         # git information
         set -g __fish_git_prompt_show_informative_status
         set -g __fish_git_prompt_showcolorhints
-        __fish_git_prompt_set_char __fish_git_prompt_char_dirtystate '+'
-        __fish_git_prompt_set_char __fish_git_prompt_char_invalidstate !
-        __fish_git_prompt_set_char __fish_git_prompt_char_stagedstate '@'
+        set -g __fish_git_prompt_char_dirtystate '+'
+        set -g __fish_git_prompt_char_invalidstate !
+        set -g __fish_git_prompt_char_stagedstate '@'
         set -g __fish_git_prompt_color_branch "yellow"
         set -g __fish_git_prompt_char_stateseparator ' '
         set -l git (__fish_git_prompt " %s")
@@ -30,9 +30,9 @@ function fish_prompt
     end
 
     switch "$PROMPT_MODE"
-        case 1 # Simple
+        case 1   # Simple
             __print_caret
-        case 2 # Nothing
+        case 2   # Nothing
         case '*' # Rich (default)
             __fish_rich_prompt
     end
