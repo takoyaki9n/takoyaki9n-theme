@@ -11,6 +11,12 @@ function fish_prompt
         set -l reset (set_color normal)
         set -l green (set_color --bold green)
         set -l blue (set_color --bold blue)
+        set -l cyan (set_color --bold cyan)
+        set -l magenta (set_color --bold magenta)
+
+        # user@host
+        set -l user $cyan(whoami)$reset
+        set -l host $blue(hostname| cut -d . -f 1)$reset
 
         # current directory
         set -l directory $green(echo $PWD | sed -e "s|^$HOME|~|")$reset
@@ -25,8 +31,8 @@ function fish_prompt
         set -g __fish_git_prompt_char_stateseparator ' '
         set -l git (__fish_git_prompt " %s")
 
-        echo -s $directory $git
-        echo -s $blue (__print_caret) $reset
+        echo -s $user '@' $host ':' $directory $git
+        echo -s $magenta (__print_caret) $reset
     end
 
     switch "$PROMPT_MODE"
