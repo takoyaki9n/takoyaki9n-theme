@@ -15,8 +15,13 @@ function fish_prompt
         set -l magenta (set_color --bold magenta)
 
         # user@host
-        set -l user $cyan(whoami)$reset
-        set -l host $blue(hostname| cut -d . -f 1)$reset
+        if test -n "$MACHINE_NAME"
+            set machine "$cyan$MACHINE_NAME$reset"
+        else
+            set -l user $cyan(whoami)$reset
+            set -l host $blue(hostname| cut -d . -f 1)$reset
+            set machine "$user@$host"
+        end
 
         # current directory
         set -l directory $green(echo $PWD | sed -e "s|^$HOME|~|")$reset
@@ -31,7 +36,7 @@ function fish_prompt
         set -g __fish_git_prompt_char_stateseparator ' '
         set -l git (__fish_git_prompt " %s")
 
-        echo -s $user '@' $host ':' $directory $git
+        echo -s $machine ':' $directory $git
         echo -s $magenta (__print_caret) $reset
     end
 
